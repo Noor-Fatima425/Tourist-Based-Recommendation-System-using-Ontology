@@ -1,0 +1,159 @@
+@prefix : <http://example.org/tourism#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Tourist rdf:type rdfs:Class .
+:Destination rdf:type rdfs:Class .
+:Trip rdf:type rdfs:Class .
+:Recommendation rdf:type rdfs:Class .
+:Activity rdf:type rdfs:Class .
+:Accommodation rdf:type rdfs:Class .
+:Transport rdf:type rdfs:Class .
+:Weather rdf:type rdfs:Class .
+:Season rdf:type rdfs:Class .
+:Cost rdf:type rdfs:Class .
+
+:Bus rdf:type :Transport .
+:Train rdf:type :Transport .
+:Flight rdf:type :Transport .
+:Boat rdf:type :Transport .
+
+:BudgetHotel rdf:type :Accommodation .
+:FourStarHotel rdf:type :Accommodation .
+:BeachResort rdf:type :Accommodation .
+
+:Trekking rdf:type :Activity .
+:MuseumTour rdf:type :Activity .
+:Skiing rdf:type :Activity .
+:ScubaDiving rdf:type :Activity .
+:CityWalk rdf:type :Activity .
+:BeachRelax rdf:type :Activity .
+
+:Sunny rdf:type :Weather .
+:Snowy rdf:type :Weather .
+
+:Summer rdf:type :Season .
+:Winter rdf:type :Season .
+
+:Low rdf:type :Cost .
+:Medium rdf:type :Cost .
+:High rdf:type :Cost .
+
+:hasPreference rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Activity .
+:hasBudget rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Cost .
+:hasTransportPreference rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Transport .
+:hasPreferredSeason rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Season .
+:plansTripTo rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Destination .
+:hasTrip rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range :Trip .
+:includesDestination rdf:type rdf:Property ; rdfs:domain :Trip ; rdfs:range :Destination .
+:hasActivity rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Activity .
+:hasAccommodation rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Accommodation .
+:hasTransportOption rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Transport .
+:hasWeather rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Weather .
+:hasSeason rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Season .
+:hasDuration rdf:type rdf:Property ; rdfs:domain :Trip ; rdfs:range xsd:duration .
+:recommends rdf:type rdf:Property ; rdfs:domain :Recommendation ; rdfs:range :Destination .
+:isRecommendedFor rdf:type rdf:Property ; rdfs:domain :Destination ; rdfs:range :Tourist ; owl:inverseOf :recommends .
+:name rdf:type rdf:Property ; rdfs:domain :Tourist ; rdfs:range xsd:string .
+
+# Tourists
+:Noor rdf:type :Tourist ;
+    :name "Noor" ;
+    :hasBudget :Medium ;
+    :hasPreference :Trekking, :MuseumTour ;
+    :hasTransportPreference :Bus, :Train ;
+    :hasPreferredSeason :Summer, :Winter .
+
+:Chathurya rdf:type :Tourist ;
+    :name "Chathurya" ;
+    :hasBudget :High ;
+    :hasPreference :Skiing, :MuseumTour ;
+    :hasTransportPreference :Flight ;
+    :hasPreferredSeason :Summer, :Winter .
+
+:Ruchitha rdf:type :Tourist ;
+    :name "Ruchitha" ;
+    :hasBudget :Low ;
+    :hasPreference :CityWalk, :BeachRelax ;
+    :hasTransportPreference :Bus ;
+    :hasPreferredSeason :Summer, :Winter .
+
+:Anudeepika rdf:type :Tourist ;
+    :name "Anudeepika" ;
+    :hasBudget :Medium ;
+    :hasPreference :ScubaDiving, :Trekking ;
+    :hasTransportPreference :Flight ;
+    :hasPreferredSeason :Summer, :Winter .
+
+:Toby rdf:type :Tourist ;
+    :name "Toby" ;
+    :hasBudget :Medium ;
+    :hasPreference :MuseumTour, :CityWalk ;
+    :hasTransportPreference :Flight, :Train ;
+    :hasPreferredSeason :Summer, :Winter .
+
+:Ruby rdf:type :Tourist ;
+    :name "Ruby" ;
+    :hasBudget :High ;
+    :hasPreference :Skiing, :BeachRelax ;
+    :hasTransportPreference :Flight ;
+    :hasPreferredSeason :Summer, :Winter .
+
+# Destinations
+:Manali rdf:type :Destination ;
+    :hasWeather :Snowy ;
+    :hasSeason :Winter ;
+    :hasActivity :Trekking, :Skiing ;
+    :hasAccommodation :BudgetHotel ;
+    :hasTransportOption :Bus .
+
+:Paris rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :MuseumTour, :CityWalk ;
+    :hasAccommodation :FourStarHotel ;
+    :hasTransportOption :Train, :Flight .
+
+:Goa rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :ScubaDiving, :BeachRelax ;
+    :hasAccommodation :BeachResort ;
+    :hasTransportOption :Flight .
+
+:Swiss_Alps rdf:type :Destination ;
+    :hasWeather :Snowy ;
+    :hasSeason :Winter ;
+    :hasActivity :Skiing, :Trekking ;
+    :hasAccommodation :FourStarHotel ;
+    :hasTransportOption :Flight, :Train .
+
+:Venice rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :CityWalk, :MuseumTour ;
+    :hasAccommodation :FourStarHotel ;
+    :hasTransportOption :Flight, :Boat .
+
+:Bali rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :BeachRelax, :ScubaDiving ;
+    :hasAccommodation :BeachResort ;
+    :hasTransportOption :Flight .
+
+:New_York rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :CityWalk, :MuseumTour ;
+    :hasAccommodation :FourStarHotel ;
+    :hasTransportOption :Flight, :Train .
+
+:Cape_Town rdf:type :Destination ;
+    :hasWeather :Sunny ;
+    :hasSeason :Summer ;
+    :hasActivity :BeachRelax, :Trekking ;
+    :hasAccommodation :BudgetHotel ;
+    :hasTransportOption :Flight, :Bus .

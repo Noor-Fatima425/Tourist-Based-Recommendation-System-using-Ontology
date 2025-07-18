@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Tour Genie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #2d3436;
+      margin-bottom: 30px;
+      font-size: 36px;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    label {
+      font-size: 18px;
+      margin-right: 10px;
+      color: #2d3436;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffffff;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: #0984e3;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #74b9ff;
+    }
+
+    #output {
+      margin-top: 40px;
+      width: 80%;
+      max-width: 500px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      color: #2d3436;
+      font-size: 18px;
+      text-align: left;
+    }
+
+    .highlight {
+      color: #d63031;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧞 Smart Tour Genie</h1>
+
+  <div>
+    <label for="tourist">👤 Choose Tourist:</label>
+    <select id="tourist">
+      <option value="Chathurya">Chathurya</option>
+      <option value="Ruchitha">Ruchitha</option>
+      <option value="Noor">Noor</option>
+      <option value="Anudeepika">Anudeepika</option>
+      <option value="Toby">Toby</option>
+      <option value="Ruby">Ruby</option>
+    </select>
+
+    <label for="weather">☀️ Choose Weather:</label>
+    <select id="weather">
+      <option value="Sunny">Summer</option>
+      <option value="Snowy">Winter</option>
+    </select>
+  </div>
+
+  <button onclick="getRecommendations()">✨ Get Recommendations</button>
+  
+  <div id="output"></div>
+
+  <script src="script.js">
+    if (data.recommendations.length === 0) {
+    resultsDiv.innerHTML = `<p>${data.message}</p>`;
+} else {
+    let html = "<h3>Recommended Places:</h3><ul>";
+    data.recommendations.forEach(place => {
+        html += `<li>${place}</li>`;
+    });
+    html += "</ul>";
+    resultsDiv.innerHTML = html;
+}
+
+  </script>
+</body>
+</html>
